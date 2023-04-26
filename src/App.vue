@@ -1,84 +1,58 @@
 <script setup>
-  import HelloWorld from './components/HelloWorld.vue'
+import ref from 'vue';
+import axios from 'axios';
+
+const APIkey = `e552c8258b3f71b20f3fc069ca964a73`;
+
+axios
+.get(url)
+.then(async(movieSelected) => {
+
+})
+
+
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <section id="container">
+    <form action="#" id="navbar">
+      <label for="select-movies">Select Movies</label>
+      <select id="select">
+        <option value="502356">The Super Mario Bros. Movie</option>
+        <option value="677179">Creed III</option>
+        <option value="76600">Avatar: The Way of Water</option>
+        <option value="638974">Murder Mystery 2</option>
+        <option value="594767">Shazam! Fury of the Gods</option>
+        <option value="816904">Momias</option>
+        <option value="603692">John Wick: Chapter 4</option>
+        <option value="758323">The Pope's Exorcist</option>
+        <option value="315162">Puss in Boots: The Last Wish</option>
+        <option value="842945">Supercell</option>
+      </select>
+    </form>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <Suspense>
+      <section id="movie-section">
+        <img src="" id="poster">
+        <div id="movie-info">
+          <h1 id="title">{{ title }}</h1>
+          <br>
+          <h4 id="average-score">{{ average-score }}</h4>
+          <h4 id="popularity">{{ popularity }}</h4>
+          <h4 id="runtime">{{ runtime }}</h4>
+          <h4 id="release-date">{{ release-date }}</h4>
+          <h4 id="revenue">{{ revenue }}</h4>
+          <h4 id="genres">{{ genres }}</h4>
+          <br>
+          <p id="overview">{{ overview }}</p>
+          <iframe id="trailer" src="" frameborder="0"></iframe>
+        </div>
+      </section>
+    </Suspense>
+  </section>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
