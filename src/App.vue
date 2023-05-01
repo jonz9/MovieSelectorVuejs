@@ -4,13 +4,9 @@ import axios from 'axios';
 
 const APIkey = `e552c8258b3f71b20f3fc069ca964a73`;
 
-axios
-.get(url)
-.then(async(movieSelected) => {
-
-})
-
-
+const getTMDBData = async (url) => {
+  return (await axios.get(url)).data;
+}
 
 </script>
 
