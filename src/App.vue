@@ -3,9 +3,11 @@ import MovieList from './components/MovieList.vue';
 </script>
 
 <template>
-  <div>
-    <MovieList />
-  </div>
+  <Suspense>
+    <div>
+      <MovieList />
+    </div>
+  </Suspense>
 </template>
 
 <style scoped>

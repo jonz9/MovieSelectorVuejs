@@ -3,20 +3,15 @@ import { ref } from "vue";
 import axios from "axios";
 
 const APIkey = `e552c8258b3f71b20f3fc069ca964a73`;
-const movieData = ref(null);
+const movieData = ref(false);
+const movieID = ref(null);
 
-axios
-  .get(
-    `https://api.themoviedb.org/3/movie/${movieID}?api_key=${APIkey}&language=en-US`
-  )
-  .then((movie) => {
-    movieData.value = movie.data;
-  })
-  .catch((error) => {
-    console.log("error");
-  });
+const getTMDBData = async () => {
+  movieData.value = (
+    await axios.get(`https://api.themoviedb.org/3/movie/${502356}?api_key=${APIkey}&language=en-US`)
+  ).data;
+};
 
-console.log(movieData);
 </script>
 
 <template>
@@ -35,7 +30,12 @@ console.log(movieData);
         <option value="315162">Puss in Boots: The Last Wish</option>
         <option value="842945">Supercell</option>
       </select>
+      <button @click="getTMDBData">Get Movie</button>
     </form>
+
+    <section id="movie-section">
+      <div></div>
+    </section>
   </section>
 </template>
 
