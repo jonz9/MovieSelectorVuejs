@@ -11,9 +11,10 @@ import MovieList from "./components/MovieList.vue";
 </template>
 
 <style scoped>
-
-.MovieList {
-  background-color: rgba(0, 0, 0, 0.6);
+template {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
-
 </style>
