@@ -10,11 +10,4 @@ import MovieList from "./components/MovieList.vue";
   </Suspense>
 </template>
 
-<style scoped>
-template {
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-}
-</style>
+<style scoped></style>

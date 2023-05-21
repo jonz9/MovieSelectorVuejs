@@ -6,7 +6,7 @@ const APIkey = `e552c8258b3f71b20f3fc069ca964a73`;
 const movieData = ref(false);
 const trailerData = ref(false);
 const movieID = ref(null);
-let bActive = new Boolean(false);
+let bActive = ref(false);
 
 const getTMDBData = async () => {
   movieData.value = (
@@ -26,8 +26,20 @@ const getTMDBData = async () => {
 </script>
 
 <template>
-  <div class="body" :style="{backgroundImage: bActive ? `url(https://image.tmdb.org/t/p/w500${movieData.backdrop_path})` : `null`, backgroundRepeat: `no-repeat`, backgroundSize: `cover`}">
-    <section id="container" :style="{backgroundColor: bActive ? `rgba(0,0,0,0.6)` : `null`}">
+  <div
+    class="body"
+    :style="{
+      backgroundImage: bActive
+        ? `url(https://image.tmdb.org/t/p/w500${movieData.backdrop_path})`
+        : `none`,
+      backgroundRepeat: `no-repeat`,
+      backgroundSize: `cover`,
+    }"
+  >
+    <section
+      id="container"
+      :style="{ backgroundColor: bActive ? `rgba(0,0,0,0.6)` : `none` }"
+    >
       <form action="#" id="navbar">
         <label for="select-movies">Select Movies</label>
         <select v-model="movieID">
@@ -45,18 +57,28 @@ const getTMDBData = async () => {
         <button @click="getTMDBData">Get Movie</button>
       </form>
 
-      <section id="movie-section" :style="{backgroundColor: `black`, borderRadius: `0.5%`, borderColor: `bisque`, borderStyle: `double`}">
+      <section
+        id="movie-section"
+        :style="{
+          backgroundColor: `black`,
+          borderRadius: `0.5%`,
+          borderColor: `bisque`,
+          borderStyle: bActive ? `double` : `none`,
+        }"
+      >
         <div v-if="movieData" id="poster">
           <img
+            id="poster"
             :src="`https://image.tmdb.org/t/p/w500${movieData.poster_path}`"
             alt="poster"
-            :style="{maxHeight: `35em`}"
           />
         </div>
         <div v-if="movieData" id="movie-info">
           <h1 id="title">{{ movieData.title }}</h1>
           <br />
-          <h4 id="average-score">Average Score: {{ movieData.vote_average }}</h4>
+          <h4 id="average-score">
+            Average Score: {{ movieData.vote_average }}
+          </h4>
           <h4 id="popularity">Popularity: {{ movieData.vote_count }}</h4>
           <h4 id="runtime">Runtime: {{ movieData.runtime }}</h4>
           <h4 id="release-date">Release Date: {{ movieData.release_date }}</h4>
@@ -81,14 +103,10 @@ const getTMDBData = async () => {
 </template>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .body {
-  background-color: rgb(77, 12, 12);
+  background-color: rgb(69, 9, 11);
+  height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
@@ -97,13 +115,20 @@ h1 {
 
 #container {
   height: 100vh;
-  width: 100vw;
   display: flex;
+  gap: 0.5em;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
   color: aliceblue;
+}
+
+#navbar {
+  gap: 0.5em;
+  display: flex;
+  position: absolute;
+  top: 0;
+  padding: 1.5em;
 }
 
 #movie-section {
@@ -113,7 +138,7 @@ h1 {
 }
 
 #poster {
-  max-height: 35em;
+  max-height: 36em;
 }
 
 #title {
