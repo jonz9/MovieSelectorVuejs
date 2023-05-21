@@ -59,21 +59,16 @@ const getTMDBData = async () => {
 
       <section
         id="movie-section"
-        :style="{
-          backgroundColor: `black`,
-          borderRadius: `0.5%`,
-          borderColor: `bisque`,
-          borderStyle: bActive ? `double` : `none`,
-        }"
+        v-if="movieData"
       >
-        <div v-if="movieData" id="poster">
+        <div id="poster">
           <img
             id="poster"
             :src="`https://image.tmdb.org/t/p/w500${movieData.poster_path}`"
             alt="poster"
           />
         </div>
-        <div v-if="movieData" id="movie-info">
+        <div id="movie-info">
           <h1 id="title">{{ movieData.title }}</h1>
           <br />
           <h4 id="average-score">
@@ -87,7 +82,6 @@ const getTMDBData = async () => {
           <br />
           <p id="overview">Synopsis: {{ movieData.overview }}</p>
           <iframe
-            v-if="trailerData"
             id="trailer"
             :src="`https://www.youtube.com/embed/${
               trailerData.results
@@ -135,6 +129,10 @@ h1 {
   display: flex;
   flex-direction: row;
   max-width: 48em;
+  background-color: black;
+  border-radius: 0.5%;
+  border-color: bisque;
+  border-style: double;
 }
 
 #poster {
